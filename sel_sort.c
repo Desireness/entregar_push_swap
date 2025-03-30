@@ -6,7 +6,7 @@
 /*   By: rauizqui <rauizqui@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 03:44:16 by rauizqui          #+#    #+#             */
-/*   Updated: 2025/03/22 18:23:01 by rauizqui         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:15:52 by rauizqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,21 @@ void    move_min_top(Stack *a)
         int pos = 0;
         int size = ft_lstsize(a->top);
 
+
+	if (a->top == min)
+		return ;
+
         while(current && current != min)
         {
                 current = current->next;
                 pos++;
         }
+	
+	if (pos == 1)
+	{
+		swap_a(a);
+		return ;
+	}
 
         if (pos <= size / 2)
         {
@@ -56,6 +66,22 @@ void    move_min_top(Stack *a)
         }
 }
 
+
+/*void selection_sort(Stack *a, Stack *b)
+{
+    int size = ft_lstsize(a->top);
+
+    for (int i = 0; i < size; i++)
+    {
+        move_min_top(a);  // Mueve el mínimo al tope de la pila
+        push_b(a, b);     // Mueve el mínimo a la pila auxiliar
+    }
+
+    while (b->top)
+    {
+        push_a(a, b);  // Devuelve los elementos de `b` a `a` (ya ordenados)
+    }
+}*/
 void    selection_sort(Stack *a, Stack *b)
 {
         while(a->top)
@@ -206,7 +232,7 @@ int is_valid_number(const char *str)
     return 0;
 }*/
 
-/*int main(int argc, char **argv)
+int main(int argc, char **argv)
 {
     Stack *a = create_stack();
     Stack *b = create_stack();
@@ -242,9 +268,9 @@ int is_valid_number(const char *str)
     free(b);
     return 0;
 
-}*/
+}
 
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
     Stack *a;
     Stack *b;
@@ -283,5 +309,5 @@ int main(int argc, char **argv)
     }
 
     return (0);
-}
+}*/
 

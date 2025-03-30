@@ -6,7 +6,7 @@
 /*   By: rauizqui <rauizqui@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 00:19:41 by rauizqui          #+#    #+#             */
-/*   Updated: 2025/03/22 13:32:14 by rauizqui         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:30:43 by rauizqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,21 @@ void print_stack(Stack *stack);
 t_list *pivot(Stack *stack);
 void    partition(Stack *a, Stack *b, int pivot);
 t_list *find_min(Stack *a);
+void    move_min_top(Stack *a);
+void    selection_sort(Stack *a, Stack *b);
 
+
+void    split_stack(Stack *a, Stack *b);
+void    merge_sort(Stack *a, Stack *b);
+void    merge_stacks(Stack *a, Stack *b);
+
+void divide_and_sort_chunks(Stack *a, Stack *b, int chunk_size);
+void merge_chunks(Stack *a, Stack *b);
+void sort_with_chunks(Stack *a, Stack *b, int chunk_size);
+
+
+void split_in_chunks(Stack *a, Stack **chunks, int *num_chunks);
+void turbo_charged_sort(Stack *a, Stack *b);
+//static int is_sorted(Stack *s);
 
 #endif
-

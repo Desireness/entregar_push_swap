@@ -6,7 +6,7 @@
 /*   By: rauizqui <rauizqui@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 11:27:20 by rauizqui          #+#    #+#             */
-/*   Updated: 2025/03/22 03:54:06 by rauizqui         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:14:19 by rauizqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Stack *create_stack()
 //We allocated memory for the stack, initialized top as null cuz its empty
 //size is = 0 cuz no data yet
 
-void push(Stack *stack, int value)
+/*void push(Stack *stack, int value)
 {
     t_list *new = malloc(sizeof(t_list));
     if (new == NULL) return;
@@ -37,12 +37,30 @@ void push(Stack *stack, int value)
     *(int *)(new->content) = value;  // Asignar el valor al contenido
 
     ft_lstadd_back(&(stack->top), new);  // Agregar al principio de la lista
+}*/
+
+void push(Stack *stack, int value)
+{
+    t_list *new_node = malloc(sizeof(t_list));
+    if (!new_node)
+        return;
+
+    new_node->content = malloc(sizeof(int));
+    if (!new_node->content)
+    {
+        free(new_node);
+        return;
+    }
+    *(int *)new_node->content = value;
+    new_node->next = stack->top;  // El nuevo nodo apunta al anterior top
+    stack->top = new_node;        // El nuevo nodo se convierte en el top
 }
+
 
 //Node created, linked to the oldest top, top now points to next node.
 
 
-int pop(Stack *stack)
+/*int pop(Stack *stack)
 {
         if(stack->top == NULL) return -1;
         t_list *temp = stack->top;
@@ -53,7 +71,24 @@ int pop(Stack *stack)
         free(temp);
         stack->size--;
         return value;
+}*/
+
+int pop(Stack *stack)
+{
+    if (!stack->top)
+        return -1;  // Indicamos error si la pila está vacía
+
+    t_list *temp = stack->top;
+    int value = *(int *)temp->content;  // Guardamos el valor a eliminar
+
+    stack->top = temp->next;  // Actualizamos el top de la pila
+
+    free(temp->content);  // Liberamos el contenido del nodo
+    free(temp);           // Liberamos el nodo
+
+    return value;
 }
+
 
 //Value stored in top node, moved top to the next node and we free the erased node.
 

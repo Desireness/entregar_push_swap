@@ -1,6 +1,6 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-SRC =  push_swap.c sel_sort.c swap.c push.c rotate.c reverse_rotate.c
+CFLAGS = -Wall -Wextra -Werror -g
+SRC =  push_swap.c sel_sort.c swap.c push.c rotate.c reverse_rotate.c merge_sort.c
 OBJ = $(SRC:.c=.o)
 NAME = push_swap
 
